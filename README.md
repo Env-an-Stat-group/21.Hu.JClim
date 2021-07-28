@@ -2,10 +2,10 @@
 Public Code for "Approximating the Internal Variability of Bias-Corrected Global Temperature Projections with Spatial Stochastic Generators" by Wenjing Hu and Stefano Castruccio.
 
 **Spatial_model.m**<br />
-This code fits a spatial linear model with considering the spatial correlation among regions and montly variance, and then estimate the sparse correlation matrix with graphical lasso.
+This code fits a spatial linear model with considering the spatial correlation among regions and monthly variance, and then estimate the sparse correlation matrix with graphical lasso.
 
 **bias_correction.m**<br />
-This code fit the spatial model above for Large Ensemble and MERRA2, and then perform bias correction with estimated mean trend and sparse correlation matrix.
+This code fits the spatial model above for Large Ensemble and MERRA2, and then perform bias correction with estimated mean trend and sparse correlation matrix.
 
 **Data**<br />
 Large ensemble is downloaded from https://www.cesm.ucar.edu/projects/community-projects/LENS/data-sets.html and aggregated into 47 regions at montyly level.<br />
