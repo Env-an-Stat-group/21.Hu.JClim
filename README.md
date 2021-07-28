@@ -8,8 +8,8 @@ This code fits a spatial linear model with considering the spatial correlation a
 This code fits the spatial model above for Large Ensemble and MERRA2, and then perform bias correction with estimated mean trend and sparse correlation matrix.
 
 **Data**<br />
-Large ensemble is downloaded from https://www.cesm.ucar.edu/projects/community-projects/LENS/data-sets.html and aggregated into 47 regions at montyly level.<br />
-MERRA2 is downloaded from https://disc.gsfc.nasa.gov/datasets?project=MERRA-2 and aggregated into 47 regions at montyly level.<br />
-ERA5 is downloaded from https://www.ecmwf.int/en/forecasts/datasets/reanalysis-datasets/era5 and aggregated into 47 regions at montyly level.
+Large ensemble is downloaded from https://www.cesm.ucar.edu/projects/community-projects/LENS/data-sets.html and aggregated into 47 regions at monthly level.<br />
+MERRA2 is downloaded from https://disc.gsfc.nasa.gov/datasets?project=MERRA-2 and aggregated into 47 regions at monthly level.<br />
+ERA5 is downloaded from https://www.ecmwf.int/en/forecasts/datasets/reanalysis-datasets/era5 and aggregated into 47 regions at monthly level.
 
 
