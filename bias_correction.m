@@ -9,14 +9,14 @@
 % Trainning set size chosen: number of realizations = 5
 r = 5;
 % Load aggregated temp data
-load('../data/TS_mean_reg.mat')
+load('Data/TS_mean_reg.mat')
 TS_mean_reg = permute(TS_mean_reg,[1 3 2]);
 
 % Load the forcings(covariates in the spatial model)
-load('../data/X_co2.mat')
+load('Data/X_co2.mat')
 
 % Load aggregated reanalysis data MERRA2
-load('../data/t2m_merra2.mat')
+load('Data/t2m_merra2.mat')
 
 % Specify the historical period and forecast period for future simulations
 time_merra2 = (60*12+9):(60*12+488); % Historical Period 198009 to 202008
@@ -65,7 +65,7 @@ end
 
 % Standardize LE residuals
 T = 480;
-res_stan_LE = NaN * ones(200/5,12,47);
+res_stan_LE = NaN * ones(200,12,47);
 for reg = 1:47
 for mn = 1:12
         res_40 = [];
@@ -118,8 +118,8 @@ cor_month_merra2 = corr(permute(res_stan_merra2_all,[2,1]));
 % -------------Step 2:Generate bias corrected simulations-----------------%
 
 % Load sparse correlation matrix for LE and MERRA2
-merra2_cor_store = csvread('../Rdata/cor_merra2_store_stan.csv');
-LE_cor_all_store = csvread('../Rdata/cor_LE_store_stan.csv');
+merra2_cor_store = csvread('Data/cor_merra2_store_stan.csv');
+LE_cor_all_store = csvread('Data/cor_LE_store_stan.csv');
 
 lam_merra2 = (0.1:0.1:1); % Penaly used for MERRA2
 lam_LE = (0:0.01:1); % Penaly used for LE
@@ -155,18 +155,17 @@ end
 
 % Choose lasso penalty lambda for achieving 60% sparsity
 i_merra2 = 2;
-lam_merra2(i_merra2
-zero_new_merra2(i_merra2);
+lam_merra2(i_merra2)
+zero_new_merra2(i_merra2)
 
 i_LE = 16;
 lam_LE(i_LE);
-zero_new_LE_all(i_LE);
+zero_new_LE_all(i_LE)
 
 % 60% sparse correlation matrix estimated for LE and MERRA2
 Sigma_merra2 = result_merra2_cor{i_merra2};
 Sigma_LE_all = result_LE_all_cor{i_LE};
 mean_MLR = zeros(47,1);
-fit_LE_F = fit_LE_F';
 
 % Generate 30 bias corrected simulations
 nsim = 30;
@@ -185,7 +184,7 @@ for i = 1:nsim
             end
         end
         TS_err_MLR_month = mvnrnd(mean_MLR, cov_LE_month, length(time_merra2_pred)/12);
-        span=mn:12:(12*81);
+        span=mn:12:(12*40);
     
         LE_sim_F = fit_LE_F(span,:) + TS_err_MLR_month;
     
