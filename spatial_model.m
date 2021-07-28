@@ -26,7 +26,6 @@ res_month_store = NaN * zeros(47,181,12);
 % ----------Step 1: Estimate the mean trend with linear regression-------%
 for reg=1:nreg
     
-    
     data=squeeze(TS_mean_reg(reg,:,1:r));
     X=repmat(Xs,r,1);
     % Get parameter estimates
