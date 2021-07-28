@@ -3,13 +3,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Load aggregated Large ensemble
-load('../data/TS_mean_reg.mat')
+load('Data/TS_mean_reg.mat')
 TS_mean_reg = permute(TS_mean_reg,[1 3 2]);
 
 % Load the pre-processed forcings
 % Xs: all the covariates in the spatial model
 % covariates : 1 vector; f(t); K*2 harmonics; K*2 f(t)*harmonics
-load('../data/X_co2.mat')
+load('Data/X_co2.mat')
 
 T=size(TS_mean_reg,2); % 2172 months from 1920 to 2100
 R=size(TS_mean_reg,3); % 35 ensemble runs
@@ -21,10 +21,11 @@ r = 5;
 % Creat matrix to store monthly sd, mean trend and residuals 
 sd_ind = NaN*ones(nreg,1);
 TS_fit_vec = NaN*ones(nreg,T);
-res_month_store = NaN * zeros(47,181,12);
+res_month_store = NaN * zeros(47,181*r,12);
 
 % ----------Step 1: Estimate the mean trend with linear regression-------%
 for reg=1:nreg
+    
     
     data=squeeze(TS_mean_reg(reg,:,1:r));
     X=repmat(Xs,r,1);
