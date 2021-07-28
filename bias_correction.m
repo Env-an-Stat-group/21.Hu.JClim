@@ -199,9 +199,3 @@ for i = 1:nsim
      end
     
 end
-
-
-
-
-
-
